@@ -4,10 +4,10 @@ import Video from './model/Videos.js';
 import connectToDb from './connection/db.js';
 import cors from 'cors';
 import { v2 as cloudinary } from 'cloudinary';
-
+import bodyParser from 'body-parser';
 const app = express();
 app.use(express.json());
-
+app.use(bodyParser.json());
 cloudinary.config({
   cloud_name: 'do4dpdezz',
   api_key: '824783255527469',
@@ -25,7 +25,7 @@ app.use(
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-connectToDb(); // Establish MongoDB connection
+connectToDb(); // Establish MongoDB connection 
 
 app.post('/upload', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: 'video', maxCount: 1 }]), async (req, res) => {
   const { title, description } = req.body;
@@ -81,6 +81,31 @@ app.post('/upload', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: '
   }
 });
 
+// get videos from mongodb
+app.get('/api/videoData',async(req,res)=>{
+  try{
+    const data=await Video.find().lean()
+      res.json(data)
+  }catch(err){
+res.status(500).json({message:err.message})
+  }
+})
+
+
+// get the data by id
+
+app.get('/api/data/:id', async (req, res) => {
+  try {
+    const videoId = req.params.id;  // Use req.params to get the video ID
+    const data = await Video.findById(videoId);  // Use await to wait for the MongoDB query to finish
+    console.log(data);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}); 
+
+
 app.listen(3001, () => {
-  console.log('Server is running on port 3001');
+  console.log('Server is running on port 3001'); 
 });
