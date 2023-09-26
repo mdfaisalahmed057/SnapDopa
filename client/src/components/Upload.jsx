@@ -15,7 +15,7 @@ function Upload({handleclose}) {
         formData.append('description', description);
 
         try {
-            await axios.post('http://localhost:3001/upload', formData);
+            await axios.post('https://snap-dopa-t2bh.vercel.app/upload', formData);
             setLoading(true)
             handleclose()
          } catch (error) {
