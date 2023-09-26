@@ -12,7 +12,7 @@ function HomePage() {
   const [selectedVideoUrl, setSelectedVideoUrl] = useState('');
   const [selectedVideoId, setSelectedVideoId] = useState(null);
   const navigate = useNavigate();
-
+ axios.defaults.withCredentials=true
   const openModal = (videoUrl, videoId) => {
     setSelectedVideoUrl(videoUrl);
     setModalOpen(true);
