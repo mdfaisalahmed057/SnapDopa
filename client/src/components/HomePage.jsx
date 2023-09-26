@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import Navbar from './Navbar';
 import Footer from './Footer';
-
+ 
 function HomePage() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,8 +12,7 @@ function HomePage() {
   const [selectedVideoUrl, setSelectedVideoUrl] = useState('');
   const [selectedVideoId, setSelectedVideoId] = useState(null);
   const navigate = useNavigate();
- axios.defaults.withCredentials=true
-  const openModal = (videoUrl, videoId) => {
+   const openModal = (videoUrl, videoId) => {
     setSelectedVideoUrl(videoUrl);
     setModalOpen(true);
   };
