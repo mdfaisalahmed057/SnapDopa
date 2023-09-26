@@ -30,7 +30,7 @@ function HomePage() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://snap-dopa-t2bh.vercel.app/api/videoData');
+      const response = await fetch('https://videoroute.onrender.com/api/videoData');
       const jsonData = await response.json();
       setData(jsonData);
       setLoading(false);

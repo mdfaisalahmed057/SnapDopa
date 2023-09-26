@@ -15,7 +15,7 @@ function Upload({handleclose}) {
         formData.append('description', description);
 
         try {
-            await axios.post('https://snap-dopa-t2bh.vercel.app/upload', formData);
+            await axios.post('https://videoroute.onrender.com/upload', formData);
             setLoading(true)
             handleclose()
          } catch (error) {

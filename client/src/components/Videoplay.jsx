@@ -14,7 +14,7 @@ function Videoplay() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://snap-dopa-t2bh.vercel.app/api/data/${id}`);
+        const response = await fetch(`https://videoroute.onrender.com/api/data/${id}`);
         const jsonData = await response.json();
         const dataArray = Object.keys(jsonData).map(key => jsonData[key]);
 
@@ -31,7 +31,7 @@ function Videoplay() {
   useEffect(() => { 
     const fetchData = async () => {
       try {
-        const response = await fetch('https://snap-dopa-t2bh.vercel.app/api/videoData');
+        const response = await fetch('https://videoroute.onrender.com/api/videoData');
         const jsonData = await response.json();
         allSetData(jsonData);
       } catch (error) {
