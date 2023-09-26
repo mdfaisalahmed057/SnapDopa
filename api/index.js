@@ -5,19 +5,21 @@ import connectToDb from './connection/db.js';
 import cors from 'cors';
 import { v2 as cloudinary } from 'cloudinary';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
-cloudinary.config({
-  cloud_name: 'do4dpdezz',
-  api_key: '824783255527469',
-  api_secret: 'DhNl9vRyMnXoCtRhC3bKLb0H23I',
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME,
+  api_key:  process.env.CLOUD_API,
+  api_secret:  process.env.CLOUD_SEC,
 });
 
 app.use(
   cors({
     origin: ['http://localhost:3000'],
-    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+    methods: ['GET', 'POST', 'DELETE', 'PUT'], 
     credentials: true,
   })
 );
@@ -89,12 +91,12 @@ app.get('/api/videoData',async(req,res)=>{
   }catch(err){
 res.status(500).json({message:err.message})
   }
-})
+}) 
 
 
 // get the data by id
-
-app.get('/api/data/:id', async (req, res) => {
+ 
+app.get('/api/data/:id', async (req, res) =>  {
   try {
     const videoId = req.params.id;  // Use req.params to get the video ID
     const data = await Video.findById(videoId);  // Use await to wait for the MongoDB query to finish
@@ -102,10 +104,12 @@ app.get('/api/data/:id', async (req, res) => {
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
-  }
+  } 
 }); 
 
 
 app.listen(3001, () => {
   console.log('Server is running on port 3001'); 
 });
+
+ 

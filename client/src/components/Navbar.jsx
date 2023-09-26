@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import Upload from './Upload'
+import { Link } from 'react-router-dom'
 function Navbar() {
     const [modal,setModel]=useState(false)
       
@@ -13,17 +14,17 @@ function Navbar() {
 
     }
   return (
-    <div>
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <div className='fixed w-full z-50'>
+    <nav className="bg-white border-gray-200 dark:bg-gray-900    ">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="https://flowbite.com/" className="flex items-center">
+    <a href=" " className="flex items-center">
       <img
         src="https://flowbite.com/docs/images/logo.svg"
         className="h-8 mr-3"
         alt="Flowbite Logo"
       />
       <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-        Flowbite
+        MeTub
       </span>
     </a>
     <div className="flex md:order-2">
@@ -138,7 +139,9 @@ function Navbar() {
             className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
             aria-current="page"
           >
+            <Link to='/video'>
             Home
+            </Link>
           </a>
         </li>
         <li>
@@ -170,6 +173,7 @@ function Navbar() {
 
 
     </div>
+    
   )
 }
 
